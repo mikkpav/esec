@@ -21,25 +21,9 @@ This project was designed and developed as a demonstration of my front-end skill
 ---
 
 ## 📸 Preview
-![Website Preview](screenshot.png)  
-*(Replace with an actual screenshot of your site once available)*
+<img width="1525" height="858" alt="Screenshot 2025-09-16 at 14 23 13" src="https://github.com/user-attachments/assets/81e62f5b-b39b-446d-b11d-7918ac3b996e" />
 
 ---
 
 ## 🌐 Live Demo
-👉 [View the website here](https://your-deployed-link.com)  
-
----
-
-## ⚙️ Getting Started
-Clone and run locally:
-
-```bash
-# Clone repo
-git clone git@github.com:your-username/infrastructure-company-site.git
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+👉 [View the website here](https://www.mikkpavelson.com/esec)  
