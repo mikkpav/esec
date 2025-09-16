@@ -22,7 +22,7 @@ function App() {
     const contactRef = useRef<HTMLDivElement>(null);
     const [scrolled, setScrolled] = useState(false);
 
-    const [size, setSize] = useState({
+    const [_, setSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });

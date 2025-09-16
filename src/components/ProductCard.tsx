@@ -1,6 +1,9 @@
 import Disclosure from './Disclosure';
 import IconArrowright from '../assets/icon-arrow-right.png';
 import List from './List';
+import ImageCarousel from './ImageCarousel';
+import Popover from './Popover';
+import { useState } from 'react';
 
 type ProductCardProps = {
     title: string;
@@ -12,6 +15,18 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ title, description, image, items, linkTitle, linkUrl }: ProductCardProps) {
+    const [popoverOpen, setPopoverOpen] = useState(false);
+    const concreteWellImages = Object.values(
+        import.meta.glob('../images/concrete/wells/*.jpg', {
+            eager: true,
+            as: 'url',
+        })
+    );
+
+    function togglePopover() {
+        setPopoverOpen((prev) => !prev);
+    }
+
     return (
         <div className='flex flex-1 items-start min-w-0'>
             <Disclosure
@@ -27,6 +42,15 @@ export default function ProductCard({ title, description, image, items, linkTitl
                 <div className='flex flex-col items-center bg-white px-2 py-4 md:p-10 gap-8'>
                     <p className='font-detail'>{description}</p>
                     <List items={items} />
+
+                    <div className='w-full'>
+                        <ImageCarousel 
+                            images={concreteWellImages} 
+                            tapAction={togglePopover} 
+                            scale='fill'
+                        />
+                    </div>
+
                     <a
                         href={linkUrl}
                         className='flex gap-1 md:gap-4 items-center font-link text-center hover:border-b-1'
@@ -41,6 +65,16 @@ export default function ProductCard({ title, description, image, items, linkTitl
                     </a>
                 </div>
             </Disclosure>
+
+            {popoverOpen && (
+                <Popover isOpen={popoverOpen} closeHandler={togglePopover}>
+                    <ImageCarousel 
+                        images={concreteWellImages} 
+                        tapAction={togglePopover} 
+                        scale='fit'
+                    />
+                </Popover>
+            )}
         </div>
     );
 }
