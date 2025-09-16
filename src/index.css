@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+:root {
+    font-family: Roboto, Inter, system-ui, Helvetica, Arial, sans-serif;
+
+    color-scheme: light dark;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@theme {
+  --font-roboto: 'Roboto', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+@layer components {
+    .gap-level-top {
+        @apply gap-12 md:gap-30;
+    }
+
+    .gap-level-atom {
+        @apply gap-6 md:gap-10;
+    }
+
+    .w-page {
+        @apply w-[80%] md:w-[60%];
+    }
+
+    .font-header {
+        @apply font-inter text-3xl md:text-7xl font-black;
+    }
+
+    .font-subheader {
+        @apply font-inter text-sm md:text-2xl leading-normal;
+    }
+
+    .font-list-header {
+        @apply font-inter text-2xl md:text-3xl font-black;
+    }
+
+    .font-action {
+        @apply font-inter text-sm font-black;
+    }
+
+    .font-list-item {
+        @apply text-sm font-medium;
+    }
+
+    .font-content {
+        @apply text-sm md:text-lg font-light leading-relaxed;
+    }
+
+    .font-detail {
+        @apply text-sm font-light leading-snug;
+    }
+
+    .font-disclaimer {
+        @apply text-[10px] md:text-[12px] font-light;
+    }
+
+    .font-link {
+        @apply text-xl font-light tracking-wide;
+    }
+
+    .bg-esec {
+        @apply bg-[#45d6c5];
+    }
+
+    .bg-esec-light {
+        @apply bg-[#dff7f5];
+    }
+
+    .bg-esec-opposite {
+        @apply bg-[#faf0f1];
+    }
+
+    .bg-background {
+        @apply bg-[#f5f9fa]
+    }
+}
