@@ -22,6 +22,11 @@ function App() {
     const contactRef = useRef<HTMLDivElement>(null);
     const [scrolled, setScrolled] = useState(false);
 
+    const [size, setSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
     function handleButtonContect() {
         contactRef.current?.scrollIntoView( { behavior: 'smooth'} )
     }
@@ -39,9 +44,17 @@ function App() {
             setScrolled(window.scrollY > 0);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        const handleResize = () => {
+            setSize({width: window.innerWidth, height: window.innerHeight});
+        };
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     return (

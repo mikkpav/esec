@@ -12,7 +12,7 @@ type ComparisonTableProps = {
 
 export default function ComparisonTable({ titleGreen, titleRed, descriptionGreen, descriptionRed, itemsGreen, itemsRed }: ComparisonTableProps) {
     return (
-        <div className='flex flex-col gap-10 md:w-[60%] rounded-2xl bg-white md:p-10 p-4 w-full max-w-full'>
+        <div className='flex flex-col gap-10 md:w-[90%] lg:w-[70%] rounded-2xl bg-white md:p-10 p-4 w-full max-w-full'>
             <div className='flex flex-col md:flex-row gap-6 items-center md:items-start'>
                 <div className='flex flex-1 flex-col text-center md:text-left'>
                     <h2 className='font-list-header'>{titleGreen}</h2>
