@@ -1,69 +1,45 @@
-# React + TypeScript + Vite
+# ESEC Estonia Company Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive website built for ESEC Estonia to showcase products, projects, and brand identity.  
+This project was designed and developed as a demonstration of my front-end skills, with a focus on **mobile-first design**, **clean code**, and a smooth **user experience**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
+- [Vite](https://vitejs.dev/) — fast, modern build tool
+- [React](https://react.dev/) — component-based UI framework
+- [Tailwind CSS](https://tailwindcss.com/) — utility-first CSS for rapid styling
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🎯 Key Features
+- **Mobile-first & responsive** — optimized for all screen sizes from phones to desktops.
+- **Dynamic design** — reusable React components, modular layout, and interactive UI elements.
+- **Clean & modern aesthetic** — built with Tailwind’s utility classes for consistency and scalability.
+- **Performance-focused** — Vite ensures fast dev builds and optimized production output.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📸 Preview
+![Website Preview](screenshot.png)  
+*(Replace with an actual screenshot of your site once available)*
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌐 Live Demo
+👉 [View the website here](https://your-deployed-link.com)  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ⚙️ Getting Started
+Clone and run locally:
+
+```bash
+# Clone repo
+git clone git@github.com:your-username/infrastructure-company-site.git
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
