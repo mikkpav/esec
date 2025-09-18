@@ -60,19 +60,21 @@ export default function ImageCarousel({ title=null, images, tapAction, onIndexCh
                         src={images[selectedIndex]}
                         alt={`Concrete well image ${selectedIndex}`}
                         className='rounded-xl w-full aspect-3/2'
+                        onSwipeLeft={selectPreviousImage}
+                        onSwipeRight={selectNextImage}
                     />
                 </div>
 
                 <button
                     onClick={selectPreviousImage}
-                    className='absolute top-1/2 left-2 transform -translate-y-1/2 cursor-pointer bg-white/70 hover:bg-white/90 rounded-full w-10 aspect-square transition'
+                    className='absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer bg-white/70 hover:bg-white/90 rounded-full w-10 aspect-square transition'
                 >
                     ◀
                 </button>
 
                 <button
                     onClick={selectNextImage}
-                    className='absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer bg-white/70 hover:bg-white/90 rounded-full w-10 aspect-square transition'
+                    className='absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer bg-white/70 hover:bg-white/90 rounded-full w-10 aspect-square transition'
                 >
                     ▶
                 </button>
