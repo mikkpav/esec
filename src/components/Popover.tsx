@@ -39,7 +39,7 @@ export default function Popover({ isOpen, closeHandler, children }: PopoverProps
         <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
             <div
                 ref={popoverRef}
-                className='bg-black/0 flex flex-col w-[70%] aspect-3/2 rounded-2xl'
+                className='bg-white rounded-xl w-[90%] md:w-[70%] p-4 md:p-10'
             >
                 {children}
             </div>

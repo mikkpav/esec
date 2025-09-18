@@ -74,6 +74,10 @@
         @apply bg-[#dff7f5];
     }
 
+    .bg-esec-light-hover {
+        @apply bg-[#dcf2f1];
+    }
+
     .bg-esec-opposite {
         @apply bg-[#faf0f1];
     }

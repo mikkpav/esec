@@ -1,34 +1,40 @@
 import { useRef, useState } from 'react';
-import IconArrowDown from '../assets/icon-arrow-down.png';
+
 
 type DisclosureProps = {
+    bgColor?: string;
+    handleOpen?: (open: boolean) => void;
     titleChildren: React.ReactNode;
     children: React.ReactNode;
 };
 
 export default function Disclosure({
+    bgColor,
+    handleOpen,
     titleChildren,
     children,
 }: DisclosureProps) {
     const [open, setOpen] = useState(false);
     const contentRef = useRef<HTMLDivElement>(null);
 
-    const toggle = () => setOpen((prev) => !prev);
+    function toggle() { 
+        setOpen((prev) => {
+            const newOpenValue = !prev;
+            handleOpen?.(newOpenValue);
+            return newOpenValue;
+        })
+    }
 
     return (
-        <div className='flex flex-col w-full rounded-2xl bg-white gap-10 overflow-clip'>
+        <div className={`flex flex-col w-full rounded-2xl gap-4 overflow-clip ${bgColor ?? 'bg-white'}`}>
             <button
                 onClick={toggle}
                 aria-expanded={open}
-                className='flex flex-col justify-center items-center md:px-14 focus:outline-none cursor-pointer'
+                className='flex flex-col w-full md:px-14 focus:outline-none cursor-pointer'
             >
                 {titleChildren}
-                <img 
-                    src={IconArrowDown} 
-                    className={`opacity-70 h-10 object-contain transition-transform duration-300 ease-in-out ${
-                        open ? 'rotate-180' : 'rotate-0'
-                }`} />
             </button>
+
             <div
                 ref={contentRef}
                 className='transition-[height] duration-300 ease-in-out overflow-hidden'

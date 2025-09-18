@@ -1,8 +1,5 @@
 import EsecLogo from './assets/esec_logo.png';
 import EsecIcon from './assets/esec_icon.png';
-import Poogen from './assets/image-poogen.jpg';
-import Wye from './assets/image-wye.jpg';
-import EsecSurface from './assets/esec-surface.jpg';
 import LogoMerko from './assets/logo-merko-tr.png';
 import LogoNobe from './assets/logo-nobe-tr.png';
 import LogoPipelife from './assets/logo-pipelife-tr.png';
@@ -15,6 +12,14 @@ import ProductCard from './components/ProductCard';
 import ComparisonTable from './components/ComparisonTable';
 import { useEffect, useRef, useState } from 'react';
 import ContactCard from './components/ContactCard';
+import { products } from './data/products';
+import { solutions } from './data/solutions';
+import { surfacefixArguments } from './data/surfaceFixArguments';
+import ImageCarousel from './components/ImageCarousel';
+
+const imagesSurfaceFix = Object.values(
+    import.meta.glob('./images/surface/*.jpg', { eager: true, as: 'url' })
+);
 
 function App() {
     const productsRef = useRef<HTMLDivElement>(null);
@@ -113,35 +118,7 @@ function App() {
                         <h1 className='font-header'>Tooted</h1>
 
                         <div className='flex flex-col md:flex-row md:justify-center gap-level-atom'>
-                            <ProductCard 
-                                title='BETOONTOOTED'
-                                description='Betoontorud koos kaasnevaga isevoolsetele torustikele. 
-                                    Ehitusmaterjalide valikul konsulteerime ja vajadusel projekteerime 
-                                    vastavalt lähteülesandest parima lahenduse.'
-                                image={Poogen}
-                                items={[
-                                    'Torud / truubid DN300 - DN2000 (EN1916)',
-                                    'Kaevud DN600 - DN2000 (EN1917)',
-                                    'Karptruubid',
-                                    'Erilahendused (mahutid, seadmekaevud, pumplad)']}
-                                linkTitle='www.rbinfra.fi'
-                                linkUrl='https://www.rbinfra.fi/et/avaleht/'
-                            />
-
-                            <ProductCard 
-                                title='GRP TOOTED'
-                                description='ESEC on spetsialiseerunud GRP (klaasplast) toodete 
-                                    pakkumisele Eesti turul - lahendused survesüsteemidele ja 
-                                    kaevevabadele teenustele.'
-                                image={Wye}
-                                items={[
-                                    'Ümarad torud DN150 - DN3000 (kerimis- või tsentrifugaalvalu meetodil valmistatud)',
-                                    'Kaevud',
-                                    'Erikujulised torud',
-                                    'Mikrotunnel-meetodil paigaldatavad torud']}
-                                linkTitle='www.amiblu.com'
-                                linkUrl='http://www.amiblu.com'
-                            />
+                            { products.map((product) => <ProductCard product={product} /> ) }
                         </div>
 
                         <h2 className='font-subheader bg-esec p-10 md:p-20 rounded-xl'>
@@ -160,11 +137,7 @@ function App() {
                                 </p>
 
                                 <div className='flex flex-wrap gap-3 items-center justify-center'>
-                                    {[
-                                        'Torud / truubid', 'Kaevud', 'Karptruubid', 
-                                        'Erilahendused (mahutid, seadmekaevud, pumplad)', 'Ümarad torud',
-                                        'Erikujulised torud', 'Mikrotunnel-meetodil paigaldatavad torud'
-                                    ].map( (item) => (
+                                    {solutions.map( (item) => (
                                         <div className='bg-esec-light rounded-2xl p-4 w-fit h-fit font-list-item'>
                                             {item}
                                         </div>
@@ -196,32 +169,20 @@ function App() {
                                 titleRed='Tänane tööprotsess kaevemeetodil'
                                 descriptionGreen='Kohapealne taastootmine (re-manufacturing)'
                                 descriptionRed='Kaevetehnika, tagasitäitematerjalide transpordivahendid, töö teostajate transpordivahendid'
-                                itemsGreen={[
-                                    '2 operaatorit',
-                                    'Tööeg kuni 2h',
-                                    'Väike jalajälg liikluse takistamisel ja müra tekitamisel',
-                                    'Ringmajanduslik mudel',
-                                    'Kordades vähendatud CO2 jalajälg',
-                                    'Madalam hind',
-                                    'Tehasekvaliteedist kõrgem täpsus'
-                                ]}
-                                itemsRed={[
-                                    'Vähemalt 3-4 erinevat spetsialisti tööga seotud',
-                                    'Kumulatiivne tööaeg 16-24h',
-                                    'Rohkem liikluse takistamine ja mürakoormust',
-                                    'Paranduses kasutatakse uusi materjale (malmluuk, tagasitäide ja asfaltkatend)',
-                                    'Kõrge CO2 jalajälg',
-                                    'Kõrge maksumus',
-                                    'Liinitootmise standardlahendused'
-                                ]}
+                                itemsGreen={ surfacefixArguments.pro }
+                                itemsRed={ surfacefixArguments.con }
                             />
                         </div>
 
                         <div className='flex flex-col items-center gap-level-top'>
-                            <ContactCat action={handleButtonContect}/>
-                            <img src={EsecSurface} className='flex object-contain min-w-0 rounded-xl' />
-                        </div>
+                            <div className='px-0 md:px-20'>
+                                <ImageCarousel 
+                                    images={imagesSurfaceFix}
+                                />
+                            </div>
 
+                            <ContactCat action={handleButtonContect}/>
+                        </div>
                     </section>
                 </div>
 
