@@ -45,7 +45,7 @@ export default function ImageCarousel({ title=null, images, tapAction, onIndexCh
     }, [selectPreviousImage, selectNextImage]);
 
     return (
-        <div className='flex flex-col items-center gap-4'>
+        <div className='flex flex-col justify-start items-center gap-4'>
             { title &&
                 <div className=''>
                     <h1 className='relative w-fit bg-esec text-white rounded-2xl p-4 text-center font-black text-xl'>
@@ -59,7 +59,6 @@ export default function ImageCarousel({ title=null, images, tapAction, onIndexCh
                     <LazyImage
                         src={images[selectedIndex]}
                         alt={`Concrete well image ${selectedIndex}`}
-                        className='rounded-xl w-full aspect-3/2'
                         onSwipeLeft={selectPreviousImage}
                         onSwipeRight={selectNextImage}
                     />

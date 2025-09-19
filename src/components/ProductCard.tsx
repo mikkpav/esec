@@ -38,14 +38,14 @@ export default function ProductCard( { product }: ProductCardProps) {
 
                     <a
                         href={ product.linkUrl }
-                        className='flex gap-1 md:gap-4 items-center font-link text-center hover:border-b-1'
+                        className='flex md:gap-4 items-center font-link text-center hover:border-b-1'
                         target='_blank'
                         rel='noopener noreferrer'
                     >
                         { product.linkTitle }
                         <img
                             src={IconArrowright}
-                            className='object-contain h-8'
+                            className='object-contain h-6'
                         />
                     </a>
                 </div>

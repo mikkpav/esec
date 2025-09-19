@@ -7,6 +7,7 @@ import ContactCat from './components/ContactCat';
 import ActionButton from './components/ActionButton';
 import ImageBuilding from './assets/image-building.avif';
 import ImageFloor from './assets/image-floor.avif';
+import ImageSkyline from './assets/image-skyline.avif';
 import EAS from './assets/logo-eas.png';
 import ProductCard from './components/ProductCard';
 import ComparisonTable from './components/ComparisonTable';
@@ -15,11 +16,6 @@ import ContactCard from './components/ContactCard';
 import { products } from './data/products';
 import { solutions } from './data/solutions';
 import { surfacefixArguments } from './data/surfaceFixArguments';
-import ImageCarousel from './components/ImageCarousel';
-
-const imagesSurfaceFix = Object.values(
-    import.meta.glob('./images/surface/*.jpg', { eager: true, as: 'url' })
-);
 
 function App() {
     const productsRef = useRef<HTMLDivElement>(null);
@@ -174,16 +170,15 @@ function App() {
                             />
                         </div>
 
-                        <div className='flex flex-col items-center gap-level-top'>
-                            <div className='px-0 md:px-20'>
-                                <ImageCarousel 
-                                    images={imagesSurfaceFix}
-                                />
-                            </div>
-
-                            <ContactCat action={handleButtonContect}/>
-                        </div>
+                            <ContactCat 
+                                action={handleButtonContect}
+                                className='self-center'
+                            />
                     </section>
+                </div>
+
+                <div className='h-100 w-full overflow-hidden'>
+                    <img src={ImageSkyline} className='object-cover h-full w-full' alt='Building' />
                 </div>
 
                 <div className='flex flex-col w-page' ref={contactRef}>

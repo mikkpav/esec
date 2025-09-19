@@ -3,16 +3,17 @@ import ActionButton from './ActionButton';
 
 type ContactCATProps = {
     action: () => void;
+    className?: string;
 }
 
-export default function ContactCat({ action }: ContactCATProps) {
+export default function ContactCat({ action, className='' }: ContactCATProps) {
 
     function buttonAction() {
         action();
     }
 
     return (
-        <div className='flex flex-col items-start border-black border-2 rounded-xl w-fit md:border-4 p-6 md:py-8 md:p-12 gap-level-atom'>
+        <div className={`flex flex-col items-start border-black border-2 rounded-xl w-fit md:border-4 p-6 md:py-8 md:p-12 gap-level-atom ${className}`}>
             <img src={EsecIcon} className='h-14 object-contain'/>
             <div className='flex flex-col gap-2'>
                 <div className='flex gap-4 items-center'>
