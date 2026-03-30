@@ -1,6 +1,7 @@
 import type { Product } from '../types/Product';
 import Poogen from '../assets/image-poogen.jpg';
 import Wye from '../assets/image-wye.jpg';
+import Rings from '../assets/image-rings.jpg';
 
 const imagesConcreteWell = Object.values(
     import.meta.glob('../images/concrete/wells/*.jpg', { eager: true, as: 'url' })
@@ -75,6 +76,27 @@ export const products: Product[] = [
             {
                 title: 'Mikrotunnel-meetodil paigaldatavad torud',
                 images: imagesGRPMicro
+            }
+        ]
+    },
+    {
+        title: 'MUU',
+        description: 'Muud konkurentidelt üle varastatud ROI pumbad.',
+        image: Rings,
+        linkTitle: '',
+        linkUrl: '',
+        productItems: [
+            {
+                title: 'Sitahaisu filtrid',
+                images: []
+            },
+            {
+                title: 'Aktiivsöed',
+                images: []
+            },
+            {
+                title: 'Mingid asjad veel',
+                images: []
             }
         ]
     }
