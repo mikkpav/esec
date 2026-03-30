@@ -30,7 +30,7 @@ const imagesGRPMicro = Object.values(
 
 export const products: Product[] = [
     {
-        title: 'BETOONTOOTED',
+        title: 'BETOON\u00ADTORUSTIKUD',
         description: 'Betoontorud koos kaasnevaga isevoolsetele torustikele. Ehitusmaterjalide valikul konsulteerime ja vajadusel projekteerime vastavalt lähteülesandest parima lahenduse.',
         image: Poogen,
         linkTitle:'www.rbinfra.fi',
@@ -55,7 +55,7 @@ export const products: Product[] = [
         ]
     },
     {
-        title: 'GRP TOOTED',
+        title: 'GRP TORUSTIKUD',
         description: 'ESEC on spetsialiseerunud GRP (klaasplast) toodete pakkumisele Eesti turul - lahendused survesüsteemidele ja kaevevabadele teenustele.',
         image: Wye,
         linkTitle: 'www.amiblu.com',
@@ -80,7 +80,7 @@ export const products: Product[] = [
         ]
     },
     {
-        title: 'MUU',
+        title: 'ERITOOTED',
         description: 'Muud konkurentidelt üle varastatud ROI pumbad.',
         image: Rings,
         linkTitle: '',

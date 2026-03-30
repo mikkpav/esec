@@ -18,10 +18,10 @@ export default function ProductCard( { product }: ProductCardProps) {
                 bgColor='bg-white'
                 handleOpen={setOpen}
                 titleChildren={
-                    <div className='flex flex-col gap-4 p-3 md:p-10 bg-white'>
-                        <div className='flex flex-col gap-2'>
-                            <h2 className='font-list-header'>{ product.title }</h2>
-                            <img src={ product.image } className='h-60 object-contain' />
+                    <div className='flex flex-col gap-4 p-3 md:p-10 bg-white w-full'>
+                        <div className='flex flex-col items-center gap-2 w-full'>
+                            <h2 className='font-list-header text-center hyphens-auto'>{ product.title }</h2>
+                            <img src={ product.image } className='w-full max-h-60 object-contain' />
                         </div>
 
                         <img
