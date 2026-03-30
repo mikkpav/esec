@@ -1,8 +1,37 @@
 import EsecLogo from './assets/esec_logo.png';
 import EsecIcon from './assets/esec_icon.png';
-import LogoMerko from './assets/logo-merko-tr.png';
-import LogoNobe from './assets/logo-nobe-tr.png';
-import LogoPipelife from './assets/logo-pipelife-tr.png';
+import LogoAmiblu from './logos/amiblu-logo.png';
+import LogoAtemo from './logos/atemo-logo.png';
+import LogoEt from './logos/et-logo.png';
+import LogoFeb from './logos/feb-logo.png';
+import LogoH from './logos/h-logo.png';
+import LogoKmgInfra from './logos/kmg-infra-logo.png';
+import LogoMerko from './logos/merko-logo.png';
+import LogoOnninen from './logos/onninen-logo.png';
+import LogoRbInfra from './logos/rb-infra-logo.png';
+import LogoTariston from './logos/tariston-logo.png';
+import LogoTrev from './logos/trev-logo.png';
+import LogoVensen from './logos/vensen-logo.png';
+import LogoVerston from './logos/verston-logo.png';
+import LogoVh from './logos/vh-logo.png';
+import LogoMarquee from './components/LogoMarquee';
+
+const partnerLogos = [
+    { src: LogoAmiblu,  alt: 'Amiblu' },
+    { src: LogoAtemo,   alt: 'Atemo' },
+    { src: LogoEt,      alt: 'ET' },
+    { src: LogoFeb,     alt: 'FEB' },
+    { src: LogoH,       alt: 'H' },
+    { src: LogoKmgInfra, alt: 'KMG Infra' },
+    { src: LogoMerko,   alt: 'Merko' },
+    { src: LogoOnninen, alt: 'Onninen' },
+    { src: LogoRbInfra, alt: 'RB Infra' },
+    { src: LogoTariston, alt: 'Tariston' },
+    { src: LogoTrev,    alt: 'Trev' },
+    { src: LogoVensen,  alt: 'Vensen' },
+    { src: LogoVerston, alt: 'Verston' },
+    { src: LogoVh,      alt: 'VH' },
+];
 import ContactCat from './components/ContactCat';
 import ActionButton from './components/ActionButton';
 import ImageBuilding from './assets/image-building.avif';
@@ -96,14 +125,10 @@ function App() {
                                 />
                             </div>
                         </div>
-
-                        <div className='flex flex-col md:flex-row justify-evenly opacity-15'>
-                            <img src={LogoMerko} className='object-contain h-20' />
-                            <img src={LogoPipelife} className='object-contain h-20' />
-                            <img src={LogoNobe} className='object-contain h-20' />
-                        </div>
                     </div>
                 </div>
+
+                <LogoMarquee logos={partnerLogos} />
 
                 <div className='h-100 w-full overflow-hidden'>
                     <img src={ImageBuilding} className='object-cover h-full w-full' alt='Building' />
