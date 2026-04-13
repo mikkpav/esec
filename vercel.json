@@ -7,6 +7,7 @@
       "destination": "/assets/:path*"
     },
     { "source": "/esec/", "destination": "/index.html" },
-    { "source": "/esec", "destination": "/index.html" }
+    { "source": "/esec", "destination": "/index.html" },
+    { "source": "/esec/:path*", "destination": "/index.html" }
   ]
 }
