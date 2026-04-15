@@ -55,7 +55,7 @@ export const products: Product[] = [
         ]
     },
     {
-        title: 'GRP TORU\u00ADSTIKUD',
+        title: 'GRP TORUSTIKUD',
         description: 'ESEC on spetsialiseerunud GRP (klaasplast) toodete pakkumisele Eesti turul - lahendused survesüsteemidele ja kaevevabadele teenustele.',
         image: Wye,
         linkTitle: 'www.amiblu.com',
@@ -80,7 +80,7 @@ export const products: Product[] = [
         ]
     },
     {
-        title: 'ERI\u00ADTOOTED',
+        title: 'ERITOOTED',
         description: 'Muud konkurentidelt üle varastatud ROI pumbad.',
         image: Rings,
         linkTitle: '',
