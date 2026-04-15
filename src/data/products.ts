@@ -30,14 +30,14 @@ const imagesGRPMicro = Object.values(
 
 export const products: Product[] = [
     {
-        title: 'BETOON\u00ADTORU\u00ADSTIKUD',
+        title: 'BETOON\u00ADTORUSTIKUD',
         description: 'Raudbetoonist torusüsteemid isevoolsetele torustikele. Konsultatsioon ja projekteerimine vastavalt lähteülesandele.',
         image: Poogen,
         linkTitle:'www.rbinfra.fi',
         linkUrl:'https://www.rbinfra.fi/et/avaleht/',
         productItems: [
             {
-                title: 'Torud / truubid DN300 - DN2000 (EN1916)',
+                title: 'Betoontorud / truubid DN300 - DN2000 (EN1916)',
                 images: imagesConcretePipes
             },
             {
