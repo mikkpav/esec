@@ -26,11 +26,12 @@ export default function Disclosure({
     }
 
     return (
-        <div className={`flex flex-col w-full rounded-2xl gap-4 overflow-clip ${bgColor ?? 'bg-white'}`}>
+        <div className={`flex w-full flex-col gap-4 overflow-clip rounded-2xl ${bgColor ?? 'bg-white'}`}>
             <button
+                type='button'
                 onClick={toggle}
                 aria-expanded={open}
-                className='flex flex-col w-full md:px-14 focus:outline-none cursor-pointer'
+                className='flex w-full flex-col cursor-pointer focus:outline-none md:px-14'
             >
                 {titleChildren}
             </button>

@@ -32,7 +32,7 @@ export default function LazyImage({ src, alt, onSwipeLeft, onSwipeRight }: LazyI
     };
 
     return (
-        <div className={'flex justify-center aspect-3/2'}>
+        <div className='flex w-full aspect-3/2 items-center justify-center'>
             <img
                 src={src}
                 alt={alt}
@@ -40,7 +40,7 @@ export default function LazyImage({ src, alt, onSwipeLeft, onSwipeRight }: LazyI
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
-                className='rounded-2xl transition-opacity duration-300'
+                className='max-h-full max-w-full object-contain rounded-2xl transition-opacity duration-300'
             />
         </div>
     );

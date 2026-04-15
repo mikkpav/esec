@@ -6,29 +6,46 @@ import { useState } from 'react';
 import type { Product } from '../types/Product';
 
 type ProductCardProps = {
-    product: Product
-}
+    product: Product;
+    headerRef?: (el: HTMLDivElement | null) => void;
+    titleRef?: (el: HTMLDivElement | null) => void;
+};
 
-export default function ProductCard( { product }: ProductCardProps) {
+export default function ProductCard({ product, headerRef, titleRef }: ProductCardProps) {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className='flex flex-1 items-start min-w-0'>
+        <div className='flex min-w-0 flex-1 flex-col'>
             <Disclosure
                 bgColor='bg-white'
                 handleOpen={setOpen}
                 titleChildren={
-                    <div className='flex flex-col gap-4 p-3 md:p-10 bg-white w-full'>
-                        <div className='flex flex-col items-center gap-2 w-full'>
-                            <h2 className='font-list-header text-center hyphens-manual'>{ product.title }</h2>
-                            <img src={ product.image } className='w-full max-h-60 object-contain' />
+                    <div
+                        ref={headerRef}
+                        className='flex min-h-0 w-full flex-col gap-4 bg-white p-3 md:p-10'
+                    >
+                        <div
+                            ref={titleRef}
+                            className='flex w-full shrink-0 flex-col items-center justify-center text-center'
+                        >
+                            <h2 className='font-list-header hyphens-manual'>{ product.title }</h2>
+                        </div>
+
+                        <div className='flex min-h-0 w-full flex-1 flex-col items-center justify-center'>
+                            <img
+                                src={product.image}
+                                alt={product.title}
+                                className='max-h-60 w-full object-contain'
+                            />
                         </div>
 
                         <img
-                            src={IconArrowDown} 
-                            className={`opacity-70 h-10 object-contain transition-transform duration-300 ease-in-out ${
+                            src={IconArrowDown}
+                            alt=''
+                            className={`h-10 shrink-0 object-contain opacity-70 transition-transform duration-300 ease-in-out ${
                                 open ? 'rotate-180' : 'rotate-0'
-                        }`} />
+                            }`}
+                        />
                     </div>
                 }
             >
@@ -36,18 +53,21 @@ export default function ProductCard( { product }: ProductCardProps) {
                     <p className='font-detail'>{ product.description }</p>
                     <List items={ product.productItems } />
 
-                    <a
-                        href={ product.linkUrl }
-                        className='flex md:gap-4 items-center font-link text-center hover:border-b-1'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        { product.linkTitle }
-                        <img
-                            src={IconArrowright}
-                            className='object-contain h-6'
-                        />
-                    </a>
+                    {product.linkUrl.trim() !== '' && (
+                        <a
+                            href={ product.linkUrl }
+                            className='flex md:gap-4 items-center font-link text-center hover:border-b-1'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            { product.linkTitle }
+                            <img
+                                src={IconArrowright}
+                                className='object-contain h-6'
+                                alt=''
+                            />
+                        </a>
+                    )}
                 </div>
             </Disclosure>
         </div>

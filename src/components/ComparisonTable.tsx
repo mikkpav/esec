@@ -2,7 +2,7 @@ import SplitList from './SplitList';
 import IconDiagonal from '../assets/icon-diagonal.png';
 import ImageCarousel from './ImageCarousel';
 const imagesSurfaceFix = Object.values(
-    import.meta.glob('../images/surface/*.jpg', { eager: true, as: 'url' })
+    import.meta.glob('../images/extra/surface/*.jpg', { eager: true, as: 'url' })
 );
 
 type ComparisonTableProps = {

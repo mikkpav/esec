@@ -40,7 +40,7 @@ import ImageSkyline from './assets/image-skyline.avif';
 import EAS from './assets/logo-eas.png';
 import ProductCard from './components/ProductCard';
 import ComparisonTable from './components/ComparisonTable';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ContactCard from './components/ContactCard';
 import { products } from './data/products';
 import { solutions } from './data/solutions';
@@ -50,12 +50,40 @@ function App() {
     const productsRef = useRef<HTMLDivElement>(null);
     const surfaceFix = useRef<HTMLDivElement>(null);
     const contactRef = useRef<HTMLDivElement>(null);
+    const productHeaderRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const productTitleRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [scrolled, setScrolled] = useState(false);
 
     const [_, setSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
+
+    const syncProductCardHeaders = useCallback(() => {
+        const md = window.matchMedia('(min-width: 768px)').matches;
+        const headers = productHeaderRefs.current.filter((e): e is HTMLDivElement => e != null);
+        const titles = productTitleRefs.current.filter((e): e is HTMLDivElement => e != null);
+        headers.forEach((el) => {
+            el.style.minHeight = '';
+        });
+        titles.forEach((el) => {
+            el.style.minHeight = '';
+        });
+        if (!md) return;
+        if (headers.length !== products.length || titles.length !== products.length) return;
+
+        const maxTitle = Math.ceil(Math.max(...titles.map((el) => el.getBoundingClientRect().height)));
+        titles.forEach((el) => {
+            el.style.minHeight = `${maxTitle}px`;
+        });
+
+        void headers[0]?.offsetHeight;
+
+        const maxHeader = Math.ceil(Math.max(...headers.map((el) => el.getBoundingClientRect().height)));
+        headers.forEach((el) => {
+            el.style.minHeight = `${maxHeader}px`;
+        });
+    }, []);
 
     function handleButtonContect() {
         contactRef.current?.scrollIntoView( { behavior: 'smooth'} )
@@ -75,17 +103,30 @@ function App() {
         };
 
         const handleResize = () => {
-            setSize({width: window.innerWidth, height: window.innerHeight});
+            setSize({ width: window.innerWidth, height: window.innerHeight });
+            requestAnimationFrame(() => syncProductCardHeaders());
         };
 
         window.addEventListener('scroll', handleScroll);
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener("resize", handleResize);
+            window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [syncProductCardHeaders]);
+
+    useLayoutEffect(() => {
+        syncProductCardHeaders();
+    }, [syncProductCardHeaders, _]);
+
+    useLayoutEffect(() => {
+        const ro = new ResizeObserver(() => syncProductCardHeaders());
+        [...productHeaderRefs.current, ...productTitleRefs.current].forEach((el) => {
+            if (el) ro.observe(el);
+        });
+        return () => ro.disconnect();
+    }, [syncProductCardHeaders]);
 
     return (
         <div className='flex flex-col bg-background'>
@@ -138,8 +179,19 @@ function App() {
                     <section className='flex flex-col gap-level-top'>
                         <h1 className='font-header'>Tooted</h1>
 
-                        <div className='flex flex-col md:flex-row md:justify-center gap-level-atom'>
-                            { products.map((product) => <ProductCard product={product} /> ) }
+                        <div className='flex flex-col gap-level-atom md:flex-row md:items-start md:justify-center'>
+                            {products.map((product, index) => (
+                                <ProductCard
+                                    key={product.title}
+                                    product={product}
+                                    headerRef={(el) => {
+                                        productHeaderRefs.current[index] = el;
+                                    }}
+                                    titleRef={(el) => {
+                                        productTitleRefs.current[index] = el;
+                                    }}
+                                />
+                            ))}
                         </div>
 
                         <h2 className='font-subheader bg-esec p-10 md:p-20 rounded-xl'>
