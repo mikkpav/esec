@@ -41,7 +41,7 @@ export const products: Product[] = [
                 images: imagesConcretePipes
             },
             {
-                title: 'Kaevud DN600 - DN2000 (EN1917)',
+                title: 'Betoonkaevud DN600 - DN2000 (EN1917)',
                 images: imagesConcreteWell
             },
             {
