@@ -37,7 +37,6 @@ import ActionButton from './components/ActionButton';
 import ImageBuilding from './assets/image-building.avif';
 import ImageFloor from './assets/image-floor.avif';
 import ImageSkyline from './assets/image-skyline.avif';
-import EAS from './assets/logo-eas.png';
 import ProductCard from './components/ProductCard';
 import ComparisonTable from './components/ComparisonTable';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -136,7 +135,12 @@ function App() {
                 >
                     <picture>
                         <source srcSet={EsecLogo} media='(min-width: 768px)' />
-                        <img src={EsecIcon} className='object-contain h-10 cursor-pointer' onClick={scrollToTop} />
+                        <img
+                            src={EsecIcon}
+                            className='object-contain h-10 cursor-pointer'
+                            alt='ESEC'
+                            onClick={scrollToTop}
+                        />
                     </picture>
                 </div>
             </header>
@@ -172,12 +176,16 @@ function App() {
                 <LogoMarquee logos={partnerLogos} />
 
                 <div className='h-100 w-full overflow-hidden'>
-                    <img src={ImageBuilding} className='object-cover h-full w-full' alt='Building' />
+                    <img
+                        src={ImageBuilding}
+                        className='object-cover h-full w-full'
+                        alt='Modern commercial building with glass curtain wall'
+                    />
                 </div>
 
                 <div className='flex flex-col w-page' ref={productsRef}>
                     <section className='flex flex-col gap-level-top'>
-                        <h1 className='font-header'>Tooted</h1>
+                        <h2 className='font-header'>Tooted</h2>
 
                         <div className='flex flex-col gap-level-atom md:flex-row md:items-start md:justify-center'>
                             {products.map((product, index) => (
@@ -194,10 +202,10 @@ function App() {
                             ))}
                         </div>
 
-                        <h2 className='font-subheader bg-esec p-10 md:p-20 rounded-xl'>
+                        <h3 className='font-subheader bg-esec p-10 md:p-20 rounded-xl'>
                             ESEC Estonia on 2020. aastal loodud ettevõte, mis pakub lahendusi maa-aluste 
                             infrastruktuurivõrkude ehituseks ja hoolduseks.
-                        </h2>
+                        </h3>
 
                         <div className='flex flex-col md:flex-row gap-level-top items-center'>
                             <div className='flex flex-col justify-center gap-10 font-content'>
@@ -205,8 +213,8 @@ function App() {
                                     ringmajanduse põhimõtteid.
                                 </p>
 
-                                <p>Teeme koostööd oma valdkonna juhtivate tootjatega, et pakkuda võrguomanikele 
-                                    ehitusmaterjale, mille eluiga on üle 100 aasta.
+                                <p>Koostöös oma valdkonna juhtivate tootjatega pakub ESEC võrguomanikele üle 100-aastase
+                                     elueaga ehitusmaterjale ja nende lisakomponente.
                                 </p>
 
                                 <div className='flex flex-wrap gap-3 items-center justify-center'>
@@ -224,23 +232,32 @@ function App() {
                 </div>
 
                 <div className='h-100 w-full overflow-hidden'>
-                    <img src={ImageFloor} className='object-cover w-full h-full' alt='Floor' />
+                    <img
+                        src={ImageFloor}
+                        className='object-cover w-full h-full'
+                        alt='Industrial interior with polished concrete floor and yellow safety markings'
+                    />
                 </div>
 
                 <div className='flex flex-col w-page' ref={surfaceFix}>
                     <section className='flex flex-col py-10 gap-level-top'>
-                        <h1 className='font-header'>ESEC kaevevaba meetod</h1>
-                        <h2 className='font-content'>Koliseva kaevuluugikomplekti parandus patenteeritud 
+                        <h2 className='font-header'>ESEC kaevevaba meetod</h2>
+                        <h3 className='font-content'>Koliseva kaevuluugikomplekti parandus patenteeritud 
                             ESEC'i meetodil. Oma tööprotsessiga suudame pikendada juba paigaldatud
                              luugikomplekti eluiga vähemalt kahekordseks - tekitades sealjuures 
-                             praktiliselt märkamatu koguse ümbertöötlematuid jäätmeid.
-                        </h2>
+                             praktiliselt märkamatu koguse ümbertöötlematuid jäätmeid. Tööprotsessi käigus 
+                             taastöödeldakse kulunud malmkrae kontaktpinnad ilma asfalti lõhkumata.
+                        </h3>
 
                         <div className='flex flex-col md:flex-row justify-center items-start gap-20'>
                             <ComparisonTable 
                                 titleGreen='ESEC kaevevaba meetod'
-                                titleRed='Tänane tööprotsess kaevemeetodil'
-                                descriptionGreen='Kohapealne taastootmine (re-manufacturing)'
+                                titleRed='Kaevuluugi vahetus kaevemeetodil'
+                                descriptionGreen={
+                                    <>
+                                        Kohapealne taastootmine (<em>re-manufacturing</em>)
+                                    </>
+                                }
                                 descriptionRed='Kaevetehnika, tagasitäitematerjalide transpordivahendid, töö teostajate transpordivahendid'
                                 itemsGreen={ surfacefixArguments.pro }
                                 itemsRed={ surfacefixArguments.con }
@@ -255,26 +272,28 @@ function App() {
                 </div>
 
                 <div className='h-100 w-full overflow-hidden'>
-                    <img src={ImageSkyline} className='object-cover h-full w-full' alt='Building' />
+                    <img
+                        src={ImageSkyline}
+                        className='object-cover h-full w-full'
+                        alt='City skyline at dusk with high-rise buildings'
+                    />
                 </div>
 
                 <div className='flex flex-col w-page' ref={contactRef}>
                     <section className='flex flex-col py-10 gap-level-top'>
-                        <h1 className='font-header'>Kontakt</h1>
+                        <h2 className='font-header'>Kontakt</h2>
 
                         <div className='flex flex-col items-center'>
                             <div className='flex flex-col gap-10 w-[60%]'>
                                 <ContactCard 
                                     title='Tekkis küsimusi?'
-                                    content='Kiireim viis oma küsimustele vastused saada on helistades.'
                                     type='phone'
-                                    actionString='+372 53 33 0615'
+                                    actionString='+372 53 330 615'
                                     contactName='Toomas Matt'
                                 />
 
                                 <ContactCard 
-                                    title='Kirjelda meile oma ülesannet'
-                                    content='Pikemat süvenemist nõudvad päringud ja täpsemad ülesandepüstitused võid meile mailile saata.'
+                                    title='Kirjelda oma ülesannet'
                                     type='email'
                                     actionString='toomas@esecestonia.ee'
                                     contactName='Toomas Matt'
@@ -288,21 +307,11 @@ function App() {
             </main>
 
             <footer className='flex flex-col items-center justify-center py-20 bg-esec-light'>
-                <div className='flex flex-col justify-between w-page gap-20'>
-                    <div className='flex flex-col md:flex-row gap-10 md:gap-0 justify-between'>
-                        <img src={EsecLogo} className='h-10 object-contain' />
-                        <img src={EAS} className='h-10 object-contain' />
-                    </div>
-                    <div className='flex flex-col items-center gap-4'>
-                        <div className='flex flex-col font-detail'>
-                                <p className='text-center'>ESEC Estonia OÜ 14926037 Randvere tee 1b, Miiduranna küla, 74015 Viimsi vald, Harju maakond</p>
-                            </div>
-                        <p className='font-disclaimer text-center text-gray-700'>ESEC Estonia OÜ has been granted funds 
-                            from the Innovation Voucher program of Enterprise Estonia, co-funded by the European 
-                            Regional Development Fund. The funding (4732€) is used for expenses regarding the 
-                            European Patent Application which covers ESEC's unique method of manhole repair.
-                        </p>
-                    </div>
+                <div className='flex flex-col items-center w-page gap-10'>
+                    <img src={EsecLogo} className='h-10 object-contain' alt='ESEC' />
+                    <p className='text-center font-detail'>
+                        ESEC Estonia OÜ 14926037 Randvere tee 1b, Miiduranna küla, 74015 Viimsi vald, Harju maakond
+                    </p>
                 </div>
             </footer>
         </ div>

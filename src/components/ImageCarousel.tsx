@@ -3,13 +3,21 @@ import LazyImage from './LazyImage';
 
 type ImageCarouselProps = {
     title?: string | null;
+    /** When `title` is absent, used as the base for photo descriptions (e.g. comparison gallery). */
+    galleryAltDescription?: string;
     images: string[];
     tapAction?: () => void;
     onIndexChange?: (index: number) => void;
 };
 
 
-export default function ImageCarousel({ title=null, images, tapAction, onIndexChange }: ImageCarouselProps) {
+export default function ImageCarousel({
+    title = null,
+    galleryAltDescription,
+    images,
+    tapAction,
+    onIndexChange,
+}: ImageCarouselProps) {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     if (images.length === 0) return null;
@@ -45,13 +53,20 @@ export default function ImageCarousel({ title=null, images, tapAction, onIndexCh
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [images.length, selectPreviousImage, selectNextImage]);
 
+    const imageAlt =
+        title != null && title !== ''
+            ? `${title}, image ${selectedIndex + 1} of ${images.length}`
+            : galleryAltDescription != null && galleryAltDescription !== ''
+              ? `${galleryAltDescription}, image ${selectedIndex + 1} of ${images.length}`
+              : `Gallery image ${selectedIndex + 1} of ${images.length}`;
+
     return (
         <div className='flex flex-col justify-start items-center gap-4'>
             { title &&
                 <div className=''>
-                    <h1 className='relative w-fit bg-esec text-white rounded-2xl p-4 text-center font-black text-xl'>
+                    <h2 className='relative w-fit bg-esec text-white rounded-2xl p-4 text-center font-black text-xl'>
                         {title}
-                    </h1>
+                    </h2>
                 </div>
             }
 
@@ -59,7 +74,7 @@ export default function ImageCarousel({ title=null, images, tapAction, onIndexCh
                 <div onClick={tapAction} className=''>
                     <LazyImage
                         src={images[selectedIndex]}
-                        alt={`Concrete well image ${selectedIndex}`}
+                        alt={imageAlt}
                         onSwipeLeft={images.length > 1 ? selectPreviousImage : undefined}
                         onSwipeRight={images.length > 1 ? selectNextImage : undefined}
                     />

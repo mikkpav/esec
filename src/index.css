@@ -58,10 +58,6 @@
         @apply text-sm font-light leading-snug;
     }
 
-    .font-disclaimer {
-        @apply text-[10px] md:text-[12px] font-light;
-    }
-
     .font-link {
         @apply text-base font-light tracking-wide;
     }

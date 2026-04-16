@@ -32,7 +32,9 @@ export default function List( { items }: ListProps) {
                     onClick={ () => item.images.length > 0 && togglePopover(item) }
                 >
                     <p className='w-full flex flex-1 flex-grow'>{ item.title }</p>
-                    { item.images.length > 0 && <img src={IconGallery} className='h-6' />}
+                    {item.images.length > 0 && (
+                        <img src={IconGallery} className='h-6' alt='' />
+                    )}
                 </li>  
             ))}
 

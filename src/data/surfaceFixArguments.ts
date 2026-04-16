@@ -6,13 +6,13 @@ export type SurfaceFixArguments = {
 }
 export const surfacefixArguments: SurfaceFixArguments = {
     pro: [
-        '2 operaatorit', 'Tööeg kuni 2h', 'Väike jalajälg liikluse takistamisel ja müra tekitamisel',
-        'Ringmajanduslik mudel', 'Kordades vähendatud CO2 jalajälg', 'Madalam hind', 
-        'Tehasekvaliteedist kõrgem täpsus'
+        '2 operaatorit', 'Tööeg kuni 2h', 'Vähene liikluse takistamine ja müra',
+        'Ringmajanduslik mudel', 'Kordades vähendatud CO2 jalajälg',
+        'Kohandatud lahendus'
     ],
     con: [
-        'Vähemalt 3-4 erinevat spetsialisti tööga seotud', 'Kumulatiivne tööaeg 16-24h', 'Rohkem liikluse takistamine ja mürakoormust', 
-        'Paranduses kasutatakse uusi materjale (malmluuk, tagasitäide ja asfaltkatend)', 'Kõrge CO2 jalajälg',
-        'Kõrge maksumus', 'Liinitootmise standardlahendused'
+        'Vähemalt 3-4 erinevat spetsialisti tööga seotud', 'Kumulatiivne tööaeg 16-24h', 'Pikaajalisemad liiklusseisakud', 
+        'Palju uute materjalide kasutamist ja vanade utiliseerimist', 'Kõrge CO2 jalajälg',
+        'Liinitootmise standardlahendused ja teetööd'
     ]
 };

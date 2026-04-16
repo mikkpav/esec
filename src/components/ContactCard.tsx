@@ -3,7 +3,6 @@ import IconEmail from '../assets/icon-email.png';
 
 type ContactCardProps = {
     title: string;
-    content: string;
     type: ContactType;
     actionString: string;
     contactName: string;
@@ -11,14 +10,13 @@ type ContactCardProps = {
 
 type ContactType = 'phone' | 'email';
 
-export default function ContactCard({ title, content, type, actionString, contactName }: ContactCardProps) {
+export default function ContactCard({ title, type, actionString, contactName }: ContactCardProps) {
     const trimmedPhoneNr = type === 'phone' && actionString.trim();
 
     return (
         <div className='flex flex-col md:flex-row gap-level-top md:items-start justify-between'>
-            <div className='flex flex-col gap-level-atom'>
-                    <h2 className='font-list-header'>{title}</h2>
-                    <p>{content}</p>
+            <div className='flex flex-col gap-2 md:gap-3'>
+                    <h3 className='font-list-header'>{title}</h3>
                     <a 
                         href={type === 'phone' ? `tel:${trimmedPhoneNr}` : `mailto:${actionString}`} 
                         className='font-action whitespace-nowrap'>
@@ -31,7 +29,11 @@ export default function ContactCard({ title, content, type, actionString, contac
                     href={type === 'phone' ? `tel:${trimmedPhoneNr}` : `mailto:${actionString}`}
                     className='w-50 flex flex-col bg-white hover:bg-gray-200 transition-colors duration-300 ease-in-out cursor-pointer rounded-xl justify-center items-center aspect-square p-4'
                 >
-                    <img src={type === 'phone' ? IconPhone : IconEmail} className='h-20' />
+                    <img
+                        src={type === 'phone' ? IconPhone : IconEmail}
+                        className='h-20'
+                        alt=''
+                    />
                 </a>
                 <div className='flex flex-col'>
                     <p className='font-list-header opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out'

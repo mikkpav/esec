@@ -28,7 +28,7 @@ export default function ProductCard({ product, headerRef, titleRef }: ProductCar
                             ref={titleRef}
                             className='flex w-full shrink-0 flex-col items-center justify-center text-center'
                         >
-                            <h2 className='font-list-header hyphens-manual'>{ product.title }</h2>
+                            <h3 className='font-list-header hyphens-manual'>{ product.title }</h3>
                         </div>
 
                         <div className='flex min-h-0 w-full flex-1 flex-col items-center justify-center'>
