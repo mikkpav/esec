@@ -1,6 +1,10 @@
 import type { Locale } from './locale';
 
 export type AppDictionary = {
+    /** `<title>` and primary SEO / social title */
+    htmlTitle: string;
+    /** `<meta name="description">` and `og:description` / `twitter:description` */
+    metaDescription: string;
     heroH1: string;
     heroSubtitle: string;
     ctaProducts: string;
@@ -134,6 +138,9 @@ const productExtraEn: ProductCopy = {
 };
 
 const et: AppDictionary = {
+    htmlTitle: 'Jätkusuutlik infrastruktuur | ESEC Estonia',
+    metaDescription:
+        'Maa-aluste torustike lahendused ning ehituseks vajalike torude ja ligipääsude müük.',
     heroH1: 'JÄTKUSUUTLIK INFRASTRUKTUUR',
     heroSubtitle:
         'Maa-aluste torustike lahendused ning ehituseks vajalike torude ja ligipääsude müük.',
@@ -199,6 +206,9 @@ const et: AppDictionary = {
 };
 
 const en: AppDictionary = {
+    htmlTitle: 'Sustainable infrastructure | ESEC Estonia',
+    metaDescription:
+        'Underground pipeline solutions; pipes and access components for construction. Long-life materials and the ESEC no-dig manhole method.',
     heroH1: 'SUSTAINABLE INFRASTRUCTURE',
     heroSubtitle: 'Underground pipeline solutions, plus the pipes and access components your projects need.',
     ctaProducts: 'View products',

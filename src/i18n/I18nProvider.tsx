@@ -2,7 +2,7 @@ import {
     createContext,
     useCallback,
     useContext,
-    useEffect,
+    useLayoutEffect,
     useMemo,
     useState,
     type ReactNode,
@@ -10,6 +10,7 @@ import {
 import type { Locale } from './locale';
 import { t, type AppDictionary } from './dictionaries';
 import { getInitialLocale, persistLocale } from './readInitialLocale';
+import { syncDocumentHead } from './syncDocumentHead';
 
 type I18nContextValue = {
     locale: Locale;
@@ -27,11 +28,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         setLocaleState(next);
     }, []);
 
-    useEffect(() => {
-        document.documentElement.lang = locale === 'et' ? 'et' : 'en';
-    }, [locale]);
-
     const dt = useMemo(() => t(locale), [locale]);
+
+    useLayoutEffect(() => {
+        syncDocumentHead(locale, dt);
+    }, [locale, dt]);
 
     const value = useMemo(
         () => ({ locale, setLocale, dt }),
