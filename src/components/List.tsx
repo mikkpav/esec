@@ -17,8 +17,6 @@ export default function List( { items }: ListProps) {
         setSelectedItem(item);
     }
 
-    console.log('list: ', items)
-
     return (
         <ul className='flex flex-col md:p-6 gap-3 font-list-item'>
             {items.map((item, index) => (

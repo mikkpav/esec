@@ -13,9 +13,18 @@ type ComparisonTableProps = {
     descriptionRed: ReactNode;
     itemsGreen: string[];
     itemsRed: string[];
+    galleryAltDescription: string;
 };
 
-export default function ComparisonTable({ titleGreen, titleRed, descriptionGreen, descriptionRed, itemsGreen, itemsRed }: ComparisonTableProps) {
+export default function ComparisonTable({
+    titleGreen,
+    titleRed,
+    descriptionGreen,
+    descriptionRed,
+    itemsGreen,
+    itemsRed,
+    galleryAltDescription,
+}: ComparisonTableProps) {
     return (
         <div className='flex flex-col gap-10 md:w-[90%] lg:w-[70%] rounded-2xl bg-white md:p-10 p-4 w-full max-w-full'>
             <div className='flex flex-col md:flex-row gap-6 items-center md:items-start'>
@@ -39,7 +48,7 @@ export default function ComparisonTable({ titleGreen, titleRed, descriptionGreen
 
             <ImageCarousel
                 images={imagesSurfaceFix}
-                galleryAltDescription='Surface repair and manhole refurbishment examples'
+                galleryAltDescription={galleryAltDescription}
             />
         </div>
     );

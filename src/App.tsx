@@ -39,13 +39,16 @@ import ImageFloor from './assets/image-floor.avif';
 import ImageSkyline from './assets/image-skyline.avif';
 import ProductCard from './components/ProductCard';
 import ComparisonTable from './components/ComparisonTable';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ContactCard from './components/ContactCard';
-import { products } from './data/products';
-import { solutions } from './data/solutions';
-import { surfacefixArguments } from './data/surfaceFixArguments';
+import { buildProducts } from './data/buildProducts';
+import LanguageSwitcher from './components/LanguageSwitcher';
+import { useI18n } from './i18n/I18nProvider';
 
 function App() {
+    const { locale, dt } = useI18n();
+    const products = useMemo(() => buildProducts(locale), [locale]);
+
     const productsRef = useRef<HTMLDivElement>(null);
     const surfaceFix = useRef<HTMLDivElement>(null);
     const contactRef = useRef<HTMLDivElement>(null);
@@ -82,7 +85,7 @@ function App() {
         headers.forEach((el) => {
             el.style.minHeight = `${maxHeader}px`;
         });
-    }, []);
+    }, [products.length]);
 
     function handleButtonContect() {
         contactRef.current?.scrollIntoView( { behavior: 'smooth'} )
@@ -117,7 +120,7 @@ function App() {
 
     useLayoutEffect(() => {
         syncProductCardHeaders();
-    }, [syncProductCardHeaders, _]);
+    }, [syncProductCardHeaders, _, locale]);
 
     useLayoutEffect(() => {
         const ro = new ResizeObserver(() => syncProductCardHeaders());
@@ -127,10 +130,21 @@ function App() {
         return () => ro.disconnect();
     }, [syncProductCardHeaders]);
 
+    const descriptionGreen =
+        locale === 'et' ? (
+            <>
+                {dt.comparisonDescGreenEtBefore}
+                <em>{dt.comparisonDescGreenEm}</em>
+                {dt.comparisonDescGreenEtAfter}
+            </>
+        ) : (
+            dt.comparisonDescGreenEn
+        );
+
     return (
         <div className='flex flex-col bg-background'>
             <header className='flex sticky top-0'>
-                <div className={`w-full p-6 ${scrolled ? 'bg-gradient-to-b from-white/100 to-white/0 md:bg-none' : 'bg-transparent'} 
+                <div className={`w-full p-6 flex flex-row justify-between items-start gap-4 ${scrolled ? 'bg-gradient-to-b from-white/100 to-white/0 md:bg-none' : 'bg-transparent'} 
                         transition-colors duration-300 ease-in-out`}
                 >
                     <picture>
@@ -142,6 +156,7 @@ function App() {
                             onClick={scrollToTop}
                         />
                     </picture>
+                    <LanguageSwitcher />
                 </div>
             </header>
 
@@ -149,22 +164,20 @@ function App() {
                 <div className='flex flex-col md:flex-row w-page'>
                     <div className='flex flex-col gap-level-top'>
                         <div className='flex flex-col gap-level-atom'>
-                            <h1 className='font-header'>JÄTKUSUUTLIK INFRASTRUKTUUR</h1>
-                            <p className='font-subheader'>Maa-aluste torustike lahendused ning ehituseks vajalike torude ja 
-                                ligipääsude müük.
-                            </p>
+                            <h1 className='font-header'>{dt.heroH1}</h1>
+                            <p className='font-subheader'>{dt.heroSubtitle}</p>
                         </div>
                         <div className='flex flex-col md:flex-row items-center md:justify-center gap-level-atom'>
                             <div className='flex justify-center w-60'>
                                 <ActionButton 
-                                    title='Vaata tooteid' 
+                                    title={dt.ctaProducts} 
                                     action={handleButtonProducts}
                                 />
                             </div>
 
                             <div className='flex justify-center w-60'>
                                 <ActionButton 
-                                    title='Võta ühendust' 
+                                    title={dt.ctaContact} 
                                     light={true} 
                                     action={handleButtonContect}
                                 />
@@ -179,13 +192,13 @@ function App() {
                     <img
                         src={ImageBuilding}
                         className='object-cover h-full w-full'
-                        alt='Modern commercial building with glass curtain wall'
+                        alt={dt.galleryAltBuilding}
                     />
                 </div>
 
                 <div className='flex flex-col w-page' ref={productsRef}>
                     <section className='flex flex-col gap-level-top'>
-                        <h2 className='font-header'>Tooted</h2>
+                        <h2 className='font-header'>{dt.productsHeading}</h2>
 
                         <div className='flex flex-col gap-level-atom md:flex-row md:items-start md:justify-center'>
                             {products.map((product, index) => (
@@ -203,23 +216,18 @@ function App() {
                         </div>
 
                         <h3 className='font-subheader bg-esec p-10 md:p-20 rounded-xl'>
-                            ESEC Estonia on 2020. aastal loodud ettevõte, mis pakub lahendusi maa-aluste 
-                            infrastruktuurivõrkude ehituseks ja hoolduseks.
+                            {dt.companyBlurb}
                         </h3>
 
                         <div className='flex flex-col md:flex-row gap-level-top items-center'>
                             <div className='flex flex-col justify-center gap-10 font-content'>
-                                <p>ESEC peab oluliseks pakutavate lahenduste pikka eluiga ja jätkusuutlikust ning 
-                                    ringmajanduse põhimõtteid.
-                                </p>
+                                <p>{dt.aboutP1}</p>
 
-                                <p>Koostöös oma valdkonna juhtivate tootjatega pakub ESEC võrguomanikele üle 100-aastase
-                                     elueaga ehitusmaterjale ja nende lisakomponente.
-                                </p>
+                                <p>{dt.aboutP2}</p>
 
                                 <div className='flex flex-wrap gap-3 items-center justify-center'>
-                                    {solutions.map( (item) => (
-                                        <div className='bg-esec-light rounded-2xl p-4 w-fit h-fit font-list-item'>
+                                    {dt.solutions.map( (item) => (
+                                        <div key={item} className='bg-esec-light rounded-2xl p-4 w-fit h-fit font-list-item'>
                                             {item}
                                         </div>
                                     ))}
@@ -235,32 +243,24 @@ function App() {
                     <img
                         src={ImageFloor}
                         className='object-cover w-full h-full'
-                        alt='Industrial interior with polished concrete floor and yellow safety markings'
+                        alt={dt.galleryAltFloor}
                     />
                 </div>
 
                 <div className='flex flex-col w-page' ref={surfaceFix}>
                     <section className='flex flex-col py-10 gap-level-top'>
-                        <h2 className='font-header'>ESEC kaevevaba meetod</h2>
-                        <h3 className='font-content'>Koliseva kaevuluugikomplekti parandus patenteeritud 
-                            ESEC'i meetodil. Oma tööprotsessiga suudame pikendada juba paigaldatud
-                             luugikomplekti eluiga vähemalt kahekordseks - tekitades sealjuures 
-                             praktiliselt märkamatu koguse ümbertöötlematuid jäätmeid. Tööprotsessi käigus 
-                             taastöödeldakse kulunud malmkrae kontaktpinnad ilma asfalti lõhkumata.
-                        </h3>
+                        <h2 className='font-header'>{dt.surfaceFixHeading}</h2>
+                        <h3 className='font-content'>{dt.surfaceFixLead}</h3>
 
                         <div className='flex flex-col md:flex-row justify-center items-start gap-20'>
                             <ComparisonTable 
-                                titleGreen='ESEC kaevevaba meetod'
-                                titleRed='Kaevuluugi vahetus kaevemeetodil'
-                                descriptionGreen={
-                                    <>
-                                        Kohapealne taastootmine (<em>re-manufacturing</em>)
-                                    </>
-                                }
-                                descriptionRed='Kaevetehnika, tagasitäitematerjalide transpordivahendid, töö teostajate transpordivahendid'
-                                itemsGreen={ surfacefixArguments.pro }
-                                itemsRed={ surfacefixArguments.con }
+                                titleGreen={dt.comparisonTitleGreen}
+                                titleRed={dt.comparisonTitleRed}
+                                descriptionGreen={descriptionGreen}
+                                descriptionRed={dt.comparisonDescRed}
+                                itemsGreen={ dt.surfaceFixPro }
+                                itemsRed={ dt.surfaceFixCon }
+                                galleryAltDescription={dt.gallerySurfaceAlt}
                             />
                         </div>
 
@@ -275,25 +275,25 @@ function App() {
                     <img
                         src={ImageSkyline}
                         className='object-cover h-full w-full'
-                        alt='City skyline at dusk with high-rise buildings'
+                        alt={dt.galleryAltSkyline}
                     />
                 </div>
 
                 <div className='flex flex-col w-page' ref={contactRef}>
                     <section className='flex flex-col py-10 gap-level-top'>
-                        <h2 className='font-header'>Kontakt</h2>
+                        <h2 className='font-header'>{dt.contactHeading}</h2>
 
                         <div className='flex flex-col items-center'>
                             <div className='flex flex-col gap-10 w-[60%]'>
                                 <ContactCard 
-                                    title='Tekkis küsimusi?'
+                                    title={dt.contactPhoneTitle}
                                     type='phone'
                                     actionString='+372 53 330 615'
                                     contactName='Toomas Matt'
                                 />
 
                                 <ContactCard 
-                                    title='Kirjelda oma ülesannet'
+                                    title={dt.contactEmailTitle}
                                     type='email'
                                     actionString='toomas@esecestonia.ee'
                                     contactName='Toomas Matt'
@@ -310,7 +310,7 @@ function App() {
                 <div className='flex flex-col items-center w-page gap-10'>
                     <img src={EsecLogo} className='h-10 object-contain' alt='ESEC' />
                     <p className='text-center font-detail'>
-                        ESEC Estonia OÜ 14926037 Randvere tee 1b, Miiduranna küla, 74015 Viimsi vald, Harju maakond
+                        {dt.footerAddress}
                     </p>
                 </div>
             </footer>
