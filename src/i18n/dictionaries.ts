@@ -64,9 +64,10 @@ const productConcreteEt: ProductCopy = {
         'Karptruubid',
         'Erilahendused (mahutid, seadmekaevud, pumplad)',
     ],
-};
-
-const productConcreteEn: ProductCopy = {
+ };
+ 
+ 
+ const productConcreteEn: ProductCopy = {
     title: 'CONCRETE PIPING',
     descriptionPlain:
         'Reinforced concrete piping systems for gravity sewers. Consultation and design according to the project brief.',
@@ -77,9 +78,10 @@ const productConcreteEn: ProductCopy = {
         'Box culverts',
         'Custom solutions (tanks, plant manholes, pump pits)',
     ],
-};
-
-const productGrpEt: ProductCopy = {
+ };
+ 
+ 
+ const productGrpEt: ProductCopy = {
     title: 'GRP TORUSTIKUD',
     descriptionPlain: '',
     grpDescription: {
@@ -93,9 +95,10 @@ const productGrpEt: ProductCopy = {
         'Erikujulised torud',
         'Mikrotunnel-meetodil paigaldatavad torud',
     ],
-};
-
-const productGrpEn: ProductCopy = {
+ };
+ 
+ 
+ const productGrpEn: ProductCopy = {
     title: 'GRP PIPING',
     descriptionPlain: '',
     grpDescription: {
@@ -109,9 +112,10 @@ const productGrpEn: ProductCopy = {
         'Non-circular and custom pipe shapes',
         'Pipes installed by microtunnelling',
     ],
-};
-
-const productExtraEt: ProductCopy = {
+ };
+ 
+ 
+ const productExtraEt: ProductCopy = {
     title: 'LISATOOTED',
     descriptionPlain: 'Torusüsteemide komponendid ja lisaseadmed.',
     grpDescription: { beforeEm: '', em: '', afterEm: '' },
@@ -122,9 +126,10 @@ const productExtraEt: ProductCopy = {
         'Aktiivsüsi',
         'Kaevuluugid',
     ],
-};
-
-const productExtraEn: ProductCopy = {
+ };
+ 
+ 
+ const productExtraEn: ProductCopy = {
     title: 'ADDITIONAL PRODUCTS',
     descriptionPlain: 'Components and accessories for pipeline systems.',
     grpDescription: { beforeEm: '', em: '', afterEm: '' },
@@ -135,12 +140,14 @@ const productExtraEn: ProductCopy = {
         'Activated carbon',
         'Manhole covers',
     ],
-};
-
-const et: AppDictionary = {
+ };
+ 
+ 
+ const et: AppDictionary = {
     htmlTitle: 'Jätkusuutlik infrastruktuur | ESEC Estonia',
     metaDescription:
         'Maa-aluste torustike lahendused ning ehituseks vajalike torude ja ligipääsude müük.',
+    
     heroH1: 'JÄTKUSUUTLIK INFRASTRUKTUUR',
     heroSubtitle:
         'Maa-aluste torustike lahendused ning ehituseks vajalike torude ja ligipääsude müük.',
@@ -203,23 +210,25 @@ const et: AppDictionary = {
     productConcrete: productConcreteEt,
     productGrp: productGrpEt,
     productExtra: productExtraEt,
-};
-
-const en: AppDictionary = {
+ };
+ 
+ 
+ const en: AppDictionary = {
     htmlTitle: 'Sustainable infrastructure | ESEC Estonia',
     metaDescription:
         'Underground pipeline solutions; pipes and access components for construction. Long-life materials and the ESEC no-dig manhole method.',
+    
     heroH1: 'SUSTAINABLE INFRASTRUCTURE',
-    heroSubtitle: 'Underground pipeline solutions, plus the pipes and access components your projects need.',
+    heroSubtitle: 'Underground pipeline solutions, pipes, access points and flow management components your projects need.',
     ctaProducts: 'View products',
     ctaContact: 'Get in touch',
     productsHeading: 'Products',
     companyBlurb:
         'ESEC Estonia, founded in 2020, supplies solutions for building and maintaining underground infrastructure networks.',
     aboutP1:
-        'ESEC values long service life, sustainability, and circular-economy principles in the systems we help deliver.',
+        'ESEC values long service life, sustainability and circular-economy principles in the systems we help deliver.',
     aboutP2:
-        'Together with leading manufacturers, ESEC offers network owners construction materials and accessories designed for 100+ year service life.',
+        'Together with leading manufacturers, ESEC offers network owners construction materials and accessories, often designed for 100+ year service life.',
     solutions: [
         'Pipes / box culverts',
         'Manholes',
@@ -234,7 +243,7 @@ const en: AppDictionary = {
     galleryAltSkyline: 'City skyline at dusk with high-rise buildings',
     surfaceFixHeading: 'ESEC no-dig manhole method',
     surfaceFixLead:
-        'Rattling manhole top-frame refurbishment using the patented ESEC process. In operation we can more than double the life of an installed assembly – with virtually no unprocessed waste. Worn cast-iron contact surfaces are re-machined in place, without cutting the asphalt open.',
+        'Rattling manhole cover refurbishment using the patented ESEC process. We can more than double the life of an installed manhole cover assembly – with virtually no unrecyclable waste. Worn cast-iron contact surfaces are re-machined in-situ, without cutting the asphalt open.',
     comparisonTitleGreen: 'ESEC no-dig method',
     comparisonTitleRed: 'Open-cut manhole replacement',
     comparisonDescGreenEtBefore: '', // not used in EN
@@ -252,11 +261,11 @@ const en: AppDictionary = {
     ],
     surfaceFixCon: [
         '3–4+ specialist trade roles on site',
-        'Total elapsed time 16–24h',
-        'Longer full lane closures',
+        'Cumulative time consumption 16–24h',
+        'Long traffic disruptions',
         'Heavy use of new materials; old material disposal',
         'High CO2 footprint',
-        'Standard catalogue parts plus civil works',
+        'Standard catalogue parts',
     ],
     gallerySurfaceAlt: 'Surface repair and manhole refurbishment examples',
     contactHeading: 'Contact',
@@ -269,7 +278,7 @@ const en: AppDictionary = {
     productConcrete: productConcreteEn,
     productGrp: productGrpEn,
     productExtra: productExtraEn,
-};
+ }; 
 
 export const dictionaries: Record<Locale, AppDictionary> = { et, en };
 
